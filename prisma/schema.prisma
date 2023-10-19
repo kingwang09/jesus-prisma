@@ -16,8 +16,11 @@ model User {
   id    Int     @id @default(autoincrement())
   email String  @unique
   name  String?
-  posts Post[]
   profile Profile?
+
+  //relation이 중복으로 된 경우, Qulified해줘야한다.
+  writtenPosts Post[] @relation("WrittenPosts") //one-to-many
+  pinnedPost   Post?  @relation("PinnedPost")   //one-to-one
 }
 
 model Profile {
@@ -31,8 +34,15 @@ model Post {
   title     String
   content   String?
   published Boolean @default(false)
-  author    User    @relation(fields: [authorId], references: [id])
+
+  //many-to-one(fk)
+  author    User    @relation("WrittenPosts", fields: [authorId], references: [id])
   authorId  Int
+
+  //one-to-one(fk)
+  pinnedBy  User?   @relation("PinnedPost", fields: [pinnedById], references: [id])
+  pinnedById Int?   @unique //이게 필수임.
+
   categories Category[]
 }
 
