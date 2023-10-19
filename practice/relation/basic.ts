@@ -45,15 +45,34 @@ async function main() {
     //     },
     //   })
 
-    const getAuthor = await prisma.user.findUnique({
+    // const getAuthor = await prisma.user.findUnique({
+    //   where: {
+    //     id: 8,
+    //   },
+    //   include: {
+    //     posts: true, // All posts where authorId == 20
+    //   },
+    // });
+    // console.log(getAuthor)
+
+    //기존 레코드를 다른 기존 레코드에 연결할 때
+      //user를 update
+        //user.id = 8
+      //posts를 변경한다.
+        //post.id=1인 데이터를 연결한다.
+    const updateAuthor = await prisma.user.update({
       where: {
         id: 8,
       },
-      include: {
-        posts: true, // All posts where authorId == 20
+      data: {
+        posts: {
+          connect: {
+            id: 1,
+          },
+        },
       },
-    });
-    console.log(getAuthor)
+    })
+    console.log(updateAuthor)
 }
 
 main()
