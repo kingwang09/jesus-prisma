@@ -33,17 +33,27 @@ prisma.$on('query', (e) => {
 })
 
 async function main() {
-    const userAndPosts = await prisma.user.create({
-        data: {
-            email: "kingwang09@gmail.com",
-          posts: {
-            create: [
-              { title: 'Prisma Day 2020' }, // Populates authorId with user's id
-              { title: 'How to write a Prisma schema' }, // Populates authorId with user's id
-            ],
-          },
-        },
-      })
+    // const userAndPosts = await prisma.user.create({
+    //     data: {
+    //         email: "kingwang09@gmail.com",
+    //       posts: {
+    //         create: [
+    //           { title: 'Prisma Day 2020' }, // Populates authorId with user's id
+    //           { title: 'How to write a Prisma schema' }, // Populates authorId with user's id
+    //         ],
+    //       },
+    //     },
+    //   })
+
+    const getAuthor = await prisma.user.findUnique({
+      where: {
+        id: 8,
+      },
+      include: {
+        posts: true, // All posts where authorId == 20
+      },
+    });
+    console.log(getAuthor)
 }
 
 main()
