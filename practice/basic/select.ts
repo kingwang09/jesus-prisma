@@ -66,7 +66,30 @@ async function main() {
         }
     });
     console.log(user)
+    console.log("--------------------")
 
+    //select find first by some
+    user = await prisma.user.findFirst({
+        where: {
+            writtenPosts:{
+                some: {
+                    published: true
+                }
+            }
+        }
+    });
+    console.log(user);
+    console.log("--------------------")
+
+    //select endsWith
+    users = await prisma.user.findMany({
+        where: {
+            email: {
+                endsWith: 'prisma.io'
+            }
+        }
+    });
+    console.log(users);
 }
 
 main()
