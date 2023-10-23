@@ -50,3 +50,11 @@ model Category {
   id    Int    @id @default(autoincrement())
   posts Post[]
 }
+
+model TimePeriod {
+  year    Int
+  quarter Int
+  total   Decimal
+
+  @@unique(fields: [year, quarter], name: "timePeriodId")
+}
