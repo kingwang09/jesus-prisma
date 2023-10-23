@@ -90,6 +90,17 @@ async function main() {
         }
     });
     console.log(users);
+    console.log("--------------------")
+
+    //select pagination
+    users = await prisma.user.findMany({
+        skip: 1,//offset 역할
+        take: 2,//limit 역할 
+        orderBy: {
+            id: 'desc'
+        }
+    });
+    console.log(users);
 }
 
 main()
