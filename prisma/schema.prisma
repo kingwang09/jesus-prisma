@@ -21,6 +21,9 @@ model User {
   //relation이 중복으로 된 경우, Qulified해줘야한다.
   writtenPosts Post[] @relation("WrittenPosts") //one-to-many
   pinnedPost   Post?  @relation("PinnedPost")   //one-to-one
+
+  //json
+  extendedPetsData Json?
 }
 
 model Profile {
