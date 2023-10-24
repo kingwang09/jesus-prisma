@@ -36,6 +36,7 @@ async function main() {
     let createUsers: Prisma.UserCreateInput[] = [
         {
             email: "cisco2007@naver.com",
+            name: "진형은",
             extendedPetsData: {
                 "pet1": {
                     "petName": "Claudine",

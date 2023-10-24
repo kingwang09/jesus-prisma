@@ -36,7 +36,16 @@ async function main() {
             id
         }
     });
+    console.log(findUsers);
+    console.log("-------------------------------");
 
+    findUsers = await prisma.user.findMany({
+        where:{
+            id:{
+                in: [1, 2, 3, 4]
+            }
+        }
+    });
     console.log(findUsers);
 }
 
