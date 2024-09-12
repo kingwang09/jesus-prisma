@@ -46,7 +46,7 @@ async function main() {
             }
         }
     });
-    console.log(findUsers);
+    console.log(JSON.stringify(findUsers, null, 2));
 }
 
 main()
