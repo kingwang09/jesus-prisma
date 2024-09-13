@@ -59,3 +59,13 @@ model TimePeriod {
 
   @@unique(fields: [year, quarter], name: "timePeriodId")
 }
+
+model Bible {
+  id    Int    @id @default(autoincrement())
+  translationVersion String
+  shortTitle String
+  longTitle String
+  chapter Int
+  subChapter Int
+  content String
+}
